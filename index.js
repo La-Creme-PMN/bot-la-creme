@@ -36,3 +36,38 @@ for (const folder of commandFolders) {
         }
     }
 }
+
+client.once(Events.ClientReady, c => {
+    console.log(`Ready! Logged in as ${c.user.tag}`);
+});
+
+
+client.on(Events.InteractionCreate, async interaction => { /* code speaks by itself… */
+    if (!interaction.isChatInputCommand()) return;
+
+    // retrieve the command triggered by the user
+    const command = interaction.client.commands.get(interaction.commandName);
+
+    // command doesn't exist
+    if (!command) {
+        console.error(`No command matching ${interaction.commandName} was found.`);
+        return;
+    }
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp({
+                content: 'There was an error while executing this command!',
+                ephemeral: true /* response disappear automatically after few seconds */
+            });
+        } else {
+            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+        }
+    }
+});
+
+// Log in to Discord using our token
+client.login(token);
