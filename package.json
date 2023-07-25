@@ -16,4 +16,7 @@
     "url": "https://github.com/La-Creme-PMN/bot-la-creme/issues"
   },
   "homepage": "https://github.com/La-Creme-PMN/bot-la-creme#readme"
+  "dependencies": {
+    "discord.js": "^14.11.0"
+  }
 }
