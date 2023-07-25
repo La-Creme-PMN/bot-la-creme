@@ -1,4 +1,10 @@
 // Interaction du bot avec l'api de Discord
 
 const Discord = require("discord.js");
-const bot = new Discord.Client(intents, 32767);
+const bot = new Discord.Client({ intents: 3276799 });
+// (3276799 = intents calculator de Discord)
+
+const config = require("./config");
+// Récupérer le token du bot situé dans config.js
+
+bot.login("config.token");
