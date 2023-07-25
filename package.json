@@ -4,7 +4,7 @@
   "description": "Un chatbot qui propose des pomodoros, intégration Slack et Discord.",
   "main": "index.js",
   "scripts": {
-    "start": "node run app.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

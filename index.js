@@ -16,7 +16,7 @@ const client = new Client(({ intents: [GatewayIntentBits.Guilds] }))
 client.commands = new Collection();
 
 const commandsFolderPath = path.join(__dirname, 'command');
-const commandFolders = fs.readdir(commandsFolderPath);
+const commandFolders = fs.readdirSync(commandsFolderPath);
 
 // Browse the command directory subfolders
 for (const folder of commandFolders) {
