@@ -37,12 +37,6 @@ for (const folder of commandFolders) {
     }
 }
 
-client.once(Events.ClientReady, c => {
-    console.log('Logged in')
-    // console.log(`Ready! Logged in as ${c.user.tag}`);
-});
-
-
 client.on(Events.InteractionCreate, async interaction => { /* code speaks by itself… */
     if (!interaction.isChatInputCommand()) return;
 
@@ -70,5 +64,18 @@ client.on(Events.InteractionCreate, async interaction => { /* code speaks by its
     }
 });
 
+
+// If the file is directly required,
+if (require.main === module) {
+    startBot();
+}
+
+function startBot() {
+    client.once(Events.ClientReady, c => {
+        console.log('Logged in!');
+    });
+
 // Log in to Discord using our token
-client.login(token);
+    client.login(token);
+}
+module.exports = { startBot }
