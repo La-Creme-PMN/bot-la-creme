@@ -1,8 +1,18 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { startBot } = require('../index.js'); // Import the function that starts the bot
 
-test('Bot is online when connected to Discord', async () => {
+beforeEach(() => {
+    // Instantiate the client before each tests
     client = new Client(({ intents: [GatewayIntentBits.Guilds] }));
+});
+
+afterEach(() => {
+    // Clean up: disconnect the client after the test
+    client.destroy();
+});
+
+
+test('Bot is online when connected to Discord', async () => {
 
     // Start the bot
     startBot(client);
@@ -23,3 +33,11 @@ test('Bot is online when connected to Discord', async () => {
     // Clean up: disconnect the client after the test
     client.destroy();
 }, 20000); // Timeout set to 20s
+
+test('Bot can read message', async () => {
+
+});
+
+test('Bot can reply to a message', async () => {
+
+});
