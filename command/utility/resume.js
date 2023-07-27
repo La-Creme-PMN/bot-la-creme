@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const pomodoroManager = require('../../pomodoroManager');
+const { resumePomodoro } = require('../../pomodoroManager');
 
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
 
     async execute(interaction) {
         const userId = interaction.userId;
-        const timeLeft = pomodoroManager.resumePomodoro(userId);
+        const timeLeft = resumePomodoro(userId);
 
         if (timeLeft) {
             const minutesLeft = Math.floor(timeLeft / 60000);

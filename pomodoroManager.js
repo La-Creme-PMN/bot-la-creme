@@ -31,8 +31,8 @@ function pausePomodoro(userId) {
 }
 
 function resumePomodoro(userId) {
-    if (!usersTimeLeft[userId].interval) {
-        // If the Pomodoro is paused, resume the timer
+    if (usersTimeLeft[userId] && !usersTimeLeft[userId].interval) {
+        const timeLeft = usersTimeLeft[userId].time;
         const interval = setInterval(() => {
             usersTimeLeft[userId].time -= 1000; // Subtract 1 second from the time left
 
@@ -46,7 +46,9 @@ function resumePomodoro(userId) {
         }, 1000);
 
         usersTimeLeft[userId].interval = interval; // Store the interval ID in the object
+        return timeLeft;
     }
+    return 0; // Return 0 if there was no paused Pomodoro session to resume
 }
 
 function stopPomodoro(userId) {
